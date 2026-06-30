@@ -1,6 +1,6 @@
 import { logger } from "./logger.js";
-import { db } from "@workspace/db";
-import { priceSnapshotsTable } from "@workspace/db";
+import { db } from "../db/index.js";
+import { priceSnapshotsTable } from "../db/schema/wallets.js";
 
 // ── Token pairs we track across chains ───────────────────────────────────────
 

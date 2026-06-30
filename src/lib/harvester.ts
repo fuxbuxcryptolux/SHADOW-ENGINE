@@ -27,7 +27,9 @@ import {
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { base, arbitrum, mainnet, bsc, polygon } from "viem/chains";
-import { db, defiVaultsTable, defiHarvestHistoryTable, appSettingsTable } from "@workspace/db";
+import { db } from "../db/index.js";
+import { defiVaultsTable, defiHarvestHistoryTable } from "../db/schema/defi.js";
+import { appSettingsTable } from "../db/schema/appSettings.js";
 import { eq, and } from "drizzle-orm";
 import { logger } from "./logger.js";
 

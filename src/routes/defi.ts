@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { db, defiVaultsTable, defiHarvestHistoryTable, activityTable, appSettingsTable } from "@workspace/db";
+import { db } from "../db/index.js";
+import { defiVaultsTable, defiHarvestHistoryTable } from "../db/schema/defi.js";
+import { activityTable } from "../db/schema/activity.js";
+import { appSettingsTable } from "../db/schema/appSettings.js";
 import { eq, sql, gte } from "drizzle-orm";
 import { runHarvester, discoverBeefyVaults, getHarvesterStatus, fetchCallRewards, subscribeToHarvestEvents } from "../lib/harvester.js";
 import { logger } from "../lib/logger.js";
