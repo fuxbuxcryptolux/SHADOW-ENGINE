@@ -1,0 +1,31 @@
+{
+  "name": "shadow-harvester",
+  "version": "1.0.0",
+  "description": "Standalone DeFi yield harvester + WETH auto-compounder",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "drizzle-orm": "^0.36.4",
+    "express": "^4.21.2",
+    "pino": "^9.6.0",
+    "pino-http": "^10.3.0",
+    "postgres": "^3.4.5",
+    "viem": "^2.21.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "drizzle-kit": "^0.28.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
