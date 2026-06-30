@@ -69,7 +69,7 @@ function getClients() {
   };
 }
 
-async function getEthUsd(pub: ReturnType<typeof createPublicClient>): Promise<number> {
+async function getEthUsd(pub: { readContract: (args: any) => Promise<unknown> }): Promise<number> {
   try {
     const [, answer] = await pub.readContract({
       address: CHAINLINK_ETH_USD, abi: CHAINLINK_ABI, functionName: "latestRoundData",

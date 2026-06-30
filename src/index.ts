@@ -10,7 +10,7 @@
 
 import express from "express";
 import cors from "cors";
-import pino from "pino-http";
+import { pinoHttp } from "pino-http";
 import { logger } from "./lib/logger.js";
 import defiRouter from "./routes/defi.js";
 import swapRouter from "./routes/swap.js";
@@ -24,7 +24,7 @@ const PORT = parseInt(process.env["PORT"] ?? "3000", 10);
 
 app.use(cors());
 app.use(express.json());
-app.use(pino({ logger: logger as any }));
+app.use(pinoHttp({ logger: logger as any }));
 
 // ── Routes ────────────────────────────────────────────────────────────────────
 app.use("/api", defiRouter);

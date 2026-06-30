@@ -197,7 +197,7 @@ router.get("/defi/audit", async (_req, res) => {
       END                                                                                            AS "winRate"
     FROM defi_vaults
   `);
-  res.json(result.rows[0]);
+  res.json(result[0]);
 });
 
 // requireInternalKey — simple guard for destructive reset operations.
