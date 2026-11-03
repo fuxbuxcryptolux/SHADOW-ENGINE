@@ -4,8 +4,8 @@
 
 - **Repository:** `/root/SHADOW-ENGINE`
 - **Branch:** `chatgpt-handoff` (tracking `origin/chatgpt-handoff`)
-- **Verified before this documentation update:** Branch `chatgpt-handoff`; local commit `6cb17b9b46d8feb8d49907c0d871591179a35ff0`; remote `origin/chatgpt-handoff` resolved to the same commit; working tree clean. ADR 0001 and the handoff correction were committed and pushed in that commit.
-- **This assignment:** The staged implementation plan and this handoff update are documentation-only changes and remain uncommitted/unpushed pending separate authorization.
+- **Plan publication commit:** `c7ff648` (`docs: add staged Shadow Harvester implementation plan`); this commit contains the implementation plan and handoff update.
+- **Working tree:** Verified clean after the documentation publication and handoff metadata update. The final handoff metadata correction is documentation-only.
 
 ## Current implementation and investigation
 
