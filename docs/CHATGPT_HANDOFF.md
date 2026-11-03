@@ -1,45 +1,43 @@
 # ChatGPT Handoff — Shadow Harvester 2.0
 
-## Current state
+## Repository state
 
-- **Repository:** SHADOW-ENGINE
-- **Branch:** `main`
-- **Current base commit:** `87329b3d50273bd0a1095222f7a6a7ef5e6adb42`
-- **Worktree before this documentation update:** clean. The handoff and audit below are now new, uncommitted documentation changes.
+- **Repository:** `/root/SHADOW-ENGINE`
+- **Branch:** `chatgpt-handoff` (tracking `origin/chatgpt-handoff`)
+- **Current commit:** `71e8f76404d032f8ea0e7ff9f996bebad8cfe624`
+- **Working tree:** The handoff and architecture decision record updates in this documentation assignment are uncommitted. The existing handoff and wallet investigation report were committed and pushed in the current commit; they were not uncommitted or unpushed.
 
-## Latest completed assignment
+## Current implementation and investigation
 
-Completed a read-only wallet architecture investigation. The inspected project has no included user wallet connection UI or browser signing flow. Harvest and swap use one backend account derived from `HARVESTER_PRIVATE_KEY`; it is globally shared by the service rather than scoped to a user. No private-key database write or explicit key logging/API response was found. The status API returns the public wallet address. Webhook URLs are stored and returned, so embedded URL credentials could be exposed.
+The checked-in project is a backend service. The wallet investigation found that harvest and swap paths use one backend account derived from `HARVESTER_PRIVATE_KEY`; it found no included user wallet connection UI or browser signing flow. The investigation is a read-only snapshot of the inspected repository and its stated evidence boundaries.
 
-**Detailed report:** [Wallet architecture investigation](AUDIT/wallet-architecture-investigation-2026-11-02.md)
+**Preserved report:** [Wallet architecture investigation](AUDIT/wallet-architecture-investigation-2026-11-02.md)
 
-## Files changed in this handoff update
+## Approved 2.0 architecture
 
-- `docs/CHATGPT_HANDOFF.md` — created; concise current status and report link.
-- `docs/AUDIT/wallet-architecture-investigation-2026-11-02.md` — created; detailed findings and recommendations.
+Shadow Harvester 2.0 starts as a personal system for one operator: the project owner. Its normal/default mode is read-only. Multi-chain and multi-protocol intelligence remains in scope.
 
-No source files were changed. No prior reports were overwritten. No commit, push, or merge was performed.
+The approved design uses two dedicated wallets:
 
-## Tests and verification
+- **Operating Wallet:** Holds limited gas and execution funds. It signs only explicitly authorized harvest, approval, and swap transactions.
+- **Treasury Wallet:** Receives verified realized profits and stores accumulated funds. It does not participate in routine automated signing.
 
-- Tests executed: **None** (read-only architecture investigation; no tests requested or run).
-- Static inspection only; no wallet connection, transaction, installation, database, or RPC action.
+The application's operational wallets must be dedicated wallets, never the owner's primary personal wallets. Private keys must never be stored in frontend code, database records, GitHub, logs, or prompts. Any profit transfer must account for gas, fees, slippage, outstanding obligations, and verified realized proceeds.
 
-## Remaining bugs and risks
+Unattended execution is a separate future capability. It requires explicit authorization and narrowly scoped permissions; it is not part of default/read-only operation. Multi-user authentication, tenant separation, subscriptions, and commercialization are deferred until the personal system demonstrates sustainable profitability.
 
-- One globally shared backend EOA signs transactions; callers are not associated with per-user wallets.
-- The inspected repo has no user authentication/tenant-scoped wallet architecture or frontend wallet implementation.
-- Wallet address/configured state is returned by `/api/defi/status`.
-- Webhook URLs are persisted and returned; embedded credentials may reach API responses and delivery logs.
-- Deployment secret handling and any frontend outside this checkout remain unverified.
+**Decision record:** [ADR: Single-operator, two-wallet architecture](ARCHITECTURE/0001-single-operator-two-wallet-architecture.md)
 
-## Architectural decisions / recommendations recorded
+## Prior documents and decision status
 
-- Default Shadow Harvester 2.0 to read-only operation without a signer.
-- Prefer user-owned browser-wallet signing for interactive execution.
-- Treat unattended execution as a separate opt-in, per-user, limited and revocable smart-account/delegation system; do not share an unrestricted backend EOA.
-- Never request or expose raw private keys; scope identities, database access, jobs, and audit trails by user/tenant.
+The wallet investigation report is preserved unchanged. No separate forensic audit report was present in this checkout. The wallet investigation's multi-user/browser-wallet recommendations were exploratory recommendations made before this approval; the approved ADR supersedes them as the product direction. The investigation's observations about the checked-in implementation remain useful evidence and are not rewritten by the ADR.
 
-## Next recommended task
+## Next recommended assignment
 
-Review and approve the wallet architecture direction before starting an implementation assignment. No implementation is authorized by this handoff.
+Prepare a staged, non-executing implementation plan for the approved personal architecture. Map current harvest, approval, swap, and profit-accounting paths to the read-only default, Operating Wallet authorization boundary, Treasury Wallet transfer boundary, and required safeguards. Keep multi-chain/multi-protocol intelligence in scope, defer multi-user/commercial features, and identify the design questions that must be resolved before implementation. Do not implement until separately authorized.
+
+## Activity and verification
+
+- This assignment updates documentation only; no application source or database schema is changed.
+- No tests, wallet setup, private-key inspection, transaction, RPC call, branch merge, commit, or push was performed.
+- The existing wallet investigation remains unchanged.
